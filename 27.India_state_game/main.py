@@ -5,13 +5,13 @@ tim = Turtle()
 screen = Screen()
 screen.setup(width=700, height=700)
 screen.title("India States Game")
-image = "27.India_state_game/blank_image.gif"
+image = "blank_image.gif"
 screen.addshape(image)
 tim.shape(image)
 tim.penup()
 correct_states = []
 
-states = pandas.read_csv("27.India_state_game/28_india_states.csv")
+states = pandas.read_csv("27_india_states.csv")
 
 while len(correct_states) < len(states):
     answer_state = screen.textinput(title=f"{len(correct_states)}/28 States correct",
@@ -21,7 +21,7 @@ while len(correct_states) < len(states):
         states_only = states.state.values
         missed_states = [state for state in states_only if state not in correct_states]
         df = pandas.DataFrame(missed_states)
-        df.to_csv("27.India_state_game/missed_states.csv")
+        df.to_csv("missed_states.csv")
         break
 
     elif answer_state in states["state"].values:
