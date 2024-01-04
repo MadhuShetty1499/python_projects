@@ -13,7 +13,7 @@ class NotificationManager:
         message = client.messages.create(
             from_=FROM_NUMBER,
             to=TO_NUMBER,
-            body=f"Low price alert! Only £{price} to fly from {origin_city}-{origin_city_code}"
+            body=f"Low price alert! Only £{price} to fly from {origin_city}-{origin_city_code} "
                  f"to {destination_city}-{destination_city_code}, from {from_date} to {to_date}."
         )
         print(message.sid)
