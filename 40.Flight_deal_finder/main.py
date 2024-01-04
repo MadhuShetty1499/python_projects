@@ -30,13 +30,14 @@ for destination in sheet_data.retrieve_data():
         continue
 
     if flight.price < destination["lowestPrice"]:
-        notification.send_sms(
-            price=flight.price,
-            origin_city=flight.origin_city,
-            origin_city_code=flight.origin_airport,
-            destination_city=flight.destination_city,
-            destination_city_code=flight.destination_airport,
-            from_date=flight.out_date,
-            to_date=flight.return_date
-        )
+
+        users = sheet_data.get_emails()
+        emails = [row["email"] for row in users]
+        names = [row["firstName"] for row in users]
+
+        message = (f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to "
+                   f"{flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}.")
+        if flight.stop_overs > 0:
+            message += f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city}."
+        notification.send_emails(emails, message)
 
