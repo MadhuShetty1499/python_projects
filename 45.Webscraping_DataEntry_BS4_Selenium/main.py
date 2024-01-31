@@ -26,7 +26,7 @@ link_list = [a.get("href") for a in links]
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=chrome_options)
-driver.get("https://forms.gle/YyMUcWY9qRHWo3rAA")
+driver.get("Google_Form_Link") #Your new google form link with 3 questions on Link, Address and Price
 
 for i in range(len(address_list)):
     # Address Entry
